@@ -15,6 +15,7 @@ public class InvokerCommand {
         return switch (command) {
             case ExitsCommand.TYPE -> ExitsCommand.getInstance();
             case CashInCommand.TYPE -> CashInCommand.getInstance();
+            case ListBillCommand.TYPE -> ListBillCommand.getInstance();
             default -> ExceptionCommand.getInstance();
         };
     }
