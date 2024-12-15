@@ -10,16 +10,12 @@ public class InvokerCommand {
         return invokerCommand;
     }
 
-
-    public ICommand createCommand(String promt) {
-        String[] commandArrays = promt.split(" ");
+    public ICommand createCommand(String[] commandArrays) {
         String command = commandArrays[0].toUpperCase();
-        switch (command) {
-            case ExitsCommand.TYPE:
-                return new ExitsCommand();
-            default:
-                return new ExceptionCommand();
-        }
-
+        return switch (command) {
+            case ExitsCommand.TYPE -> ExitsCommand.getInstance();
+            case CashInCommand.TYPE -> CashInCommand.getInstance();
+            default -> ExceptionCommand.getInstance();
+        };
     }
 }

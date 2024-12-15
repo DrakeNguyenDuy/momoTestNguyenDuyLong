@@ -1,5 +1,6 @@
 package momo;
 
+import momo.command.ExitsCommand;
 import momo.command.ICommand;
 import momo.command.InvokerCommand;
 
@@ -13,12 +14,16 @@ public class PaymentApp {
         ICommand command = null;
         while (true) {
             promt = scanner.nextLine();
-            if(promt == null || promt.isEmpty())
-            {
+            if (promt == null || promt.isEmpty()) {
                 continue;
             }
-            command = InvokerCommand.getInstance().createCommand(promt);
-            command.execute();
+            promt = promt.replaceAll("\\s+", " ");
+            String[] commandArrays = promt.split(" ");
+            command = InvokerCommand.getInstance().createCommand(commandArrays);
+            command.execute(commandArrays);
+            if (command instanceof ExitsCommand) {
+                break;
+            }
         }
     }
 

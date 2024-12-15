@@ -1,4 +1,5 @@
 package momo.command;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.ByteArrayOutputStream;
@@ -7,7 +8,7 @@ import java.io.PrintStream;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-public class ExitsCommandTest{
+public class ExitsCommandTest {
 
     private static ByteArrayOutputStream outputStream;
 
@@ -19,39 +20,41 @@ public class ExitsCommandTest{
     }
 
     @Test
-    public void testExitCommand()
-    {
+    public void testExitCommand() {
         String promt = "EXIT";
-        ICommand command = InvokerCommand.getInstance().createCommand(promt);
-        command.execute();
+        String[] commandArrays = promt.split(" ");
+        ICommand command = InvokerCommand.getInstance().createCommand(commandArrays);
+        command.execute(commandArrays);
         String output = outputStream.toString().trim();
         assertEquals("Good bye!", output);
         outputStream.reset();
     }
 
     @Test
-    public void testUpperCaseLowerCase()
-    {
+    public void testUpperCaseLowerCase() {
         //Upper case
         String promt = "EXIT";
-        ICommand command = InvokerCommand.getInstance().createCommand(promt);
-        command.execute();
+        String[] commandArrays = promt.split(" ");
+        ICommand command = InvokerCommand.getInstance().createCommand(commandArrays);
+        command.execute(commandArrays);
         String output = outputStream.toString().trim();
         assertEquals("Good bye!", output);
         outputStream.reset();
 
         //Lower case
         promt = "exit";
-        command = InvokerCommand.getInstance().createCommand(promt);
-        command.execute();
+        commandArrays = promt.split(" ");
+        command = InvokerCommand.getInstance().createCommand(commandArrays);
+        command.execute(commandArrays);
         output = outputStream.toString().trim();
         assertEquals("Good bye!", output);
         outputStream.reset();
 
         //Mixer case
         promt = "eXIt";
-        command = InvokerCommand.getInstance().createCommand(promt);
-        command.execute();
+        commandArrays = promt.split(" ");
+        command = InvokerCommand.getInstance().createCommand(commandArrays);
+        command.execute(commandArrays);
         output = outputStream.toString().trim();
         assertEquals("Good bye!", output);
         outputStream.reset();

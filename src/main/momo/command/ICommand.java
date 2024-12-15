@@ -1,5 +1,8 @@
 package momo.command;
 
 public interface ICommand {
-    public void execute();
+    /*
+     * Execute command
+     */
+    public void execute(String[] params);
 }
