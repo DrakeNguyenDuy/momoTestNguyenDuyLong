@@ -1,6 +1,6 @@
 package momo.command;
 
-import momo.constant.MessageContant;
+import momo.constant.MessageConstant;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -54,7 +54,7 @@ public class CashInCommandTest {
         ICommand command = InvokerCommand.getInstance().createCommand(commandArrays);
         command.execute(commandArrays);
         String output = outputStream.toString().trim();
-        assertEquals(MessageContant.CASH_IN_EQUAL_OR_SMALLER_O, output);
+        assertEquals(MessageConstant.CASH_IN_EQUAL_OR_SMALLER_O, output);
         outputStream.reset();
 
         promt = "CASH_IN -2000";
@@ -62,7 +62,7 @@ public class CashInCommandTest {
         command = InvokerCommand.getInstance().createCommand(commandArrays);
         command.execute(commandArrays);
         output = outputStream.toString().trim();
-        assertEquals(MessageContant.CASH_IN_EQUAL_OR_SMALLER_O, output);
+        assertEquals(MessageConstant.CASH_IN_EQUAL_OR_SMALLER_O, output);
         outputStream.reset();
     }
 
@@ -73,7 +73,7 @@ public class CashInCommandTest {
         ICommand command = InvokerCommand.getInstance().createCommand(commandArrays);
         command.execute(commandArrays);
         String output = outputStream.toString().trim();
-        assertEquals(MessageContant.CASH_IN_NAN, output);
+        assertEquals(MessageConstant.CASH_IN_NAN, output);
         outputStream.reset();
 
         promt = "CASH_IN abc ";
@@ -81,7 +81,7 @@ public class CashInCommandTest {
         command = InvokerCommand.getInstance().createCommand(commandArrays);
         command.execute(commandArrays);
         output = outputStream.toString().trim();
-        assertEquals(MessageContant.CASH_IN_NAN, output);
+        assertEquals(MessageConstant.CASH_IN_NAN, output);
         outputStream.reset();
     }
 
@@ -92,7 +92,7 @@ public class CashInCommandTest {
         ICommand command = InvokerCommand.getInstance().createCommand(commandArrays);
         command.execute(commandArrays);
         String output = outputStream.toString().trim();
-        assertEquals(MessageContant.COMMAND_FORMAT_INCORRECT, output);
+        assertEquals(MessageConstant.COMMAND_FORMAT_INCORRECT, output);
         outputStream.reset();
 
         promt = "CASH_IN";
@@ -100,7 +100,7 @@ public class CashInCommandTest {
         command = InvokerCommand.getInstance().createCommand(commandArrays);
         command.execute(commandArrays);
         output = outputStream.toString().trim();
-        assertEquals(MessageContant.COMMAND_FORMAT_INCORRECT, output);
+        assertEquals(MessageConstant.COMMAND_FORMAT_INCORRECT, output);
         outputStream.reset();
     }
 }

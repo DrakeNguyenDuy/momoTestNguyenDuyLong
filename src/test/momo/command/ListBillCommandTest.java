@@ -20,7 +20,7 @@ public class ListBillCommandTest {
     }
 
     @Test
-    public void testExitCommand_Success() throws Exception {
+    public void testListBill_Success() throws Exception {
         String promt = "LIST_BILL";
         String[] commandArrays = promt.split(" ");
         ICommand command = InvokerCommand.getInstance().createCommand(commandArrays);

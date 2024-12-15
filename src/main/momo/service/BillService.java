@@ -1,8 +1,13 @@
 package momo.service;
 
+import momo.constant.MessageConstant;
 import momo.model.Bill;
+import momo.model.Customer;
+import momo.model.Payment;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -30,5 +35,47 @@ public class BillService {
 
     public List<Bill> getBills() {
         return new ArrayList<Bill>(bills.values());
+    }
+
+    public void payment(String[] params) {
+        if (params.length == 1) {
+            System.out.println(MessageConstant.COMMAND_FORMAT_INCORRECT);
+            return;
+        }
+        long totalAmount = 0;
+        StringBuilder id = new StringBuilder();
+        List<Payment> payments = new ArrayList<>();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date currentDate = new Date();
+        for (int i = 1; i < params.length; i++) {
+            try {
+                totalAmount += Long.parseLong(params[i]);
+                if (i > 1) {
+                    id.append(", ");
+                }
+                id.append(params[i]);
+                Bill bill = bills.get(Integer.parseInt(params[i]));
+                if(bill == null)
+                {
+                    System.out.println(MessageConstant.NOT_FOUND_BILL);
+                    return;
+                }
+                payments.add(new Payment(PaymentService.getInstance().nextIdSequence(), bill.getAmount(), dateFormat.format(currentDate),
+                        bill.getState(), bill.getId()));
+            } catch (NumberFormatException e) {
+                System.out.println(MessageConstant.CASH_IN_NAN);
+                return;
+            }
+        }
+        CustomerService customerService = CustomerService.getInstance();
+        Customer customer = customerService.getCustomer();
+        if (customer.getBalance() < totalAmount) {
+            System.out.println(MessageConstant.BALANCE_NOT_ENOUGH);
+            return;
+        }
+
+        System.out.println("Payment has been completed for Bill with id " + id.toString() + ".");
+        PaymentService paymentService = PaymentService.getInstance();
+        paymentService.addPayments(payments);
     }
 }

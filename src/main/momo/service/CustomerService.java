@@ -1,6 +1,6 @@
 package momo.service;
 
-import momo.constant.MessageContant;
+import momo.constant.MessageConstant;
 import momo.model.Customer;
 
 public class CustomerService {
@@ -30,18 +30,18 @@ public class CustomerService {
         long amount = INT_DEFAULT;
         int COMMAND_FORMAT_CORRECT = 2;
         if (command.length != COMMAND_FORMAT_CORRECT) {
-            System.out.println(MessageContant.COMMAND_FORMAT_INCORRECT);
+            System.out.println(MessageConstant.COMMAND_FORMAT_INCORRECT);
             return;
         }
         try {
             amount = Long.parseLong(command[1]);
         } catch (NumberFormatException e) {
-            System.out.println(MessageContant.CASH_IN_NAN);
+            System.out.println(MessageConstant.CASH_IN_NAN);
             return;
         }
 
         if (amount <= INT_DEFAULT) {
-            System.out.println(MessageContant.CASH_IN_EQUAL_OR_SMALLER_O);
+            System.out.println(MessageConstant.CASH_IN_EQUAL_OR_SMALLER_O);
             return;
         }
         if (customer != null) {
