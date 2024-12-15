@@ -1,8 +1,14 @@
-"# momoTestNguyenDuyLong"
-JDK: 21
-"How to run"
-"#1 Move to project by path like cd ../your_path/momoTestNguyenDuyLong"
-"#2 Build project in Window by CMD"
-javac -d out src\main\momo\*.java src\main\momo\command\*.java src\main\momo\model\*.java src\main\momo\service\*.java src\main\momo\constant\*.java
-"#3 Run project in Window by CMD"
-java -cp out momo.PaymentApp
+# momoTestNguyenDuyLong
+
+**JDK**: 21
+
+## How to run
+
+### Step 1: Move to project directory
+Run the following command to navigate to your project directory:
+
+### Step 2: Build project on Windows using CMD
+To compile the project, run the following command:
+
+### Step 3: Run project on Windows using CMD
+To run the project, use the following command:
