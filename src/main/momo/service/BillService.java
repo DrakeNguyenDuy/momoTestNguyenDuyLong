@@ -55,8 +55,7 @@ public class BillService {
                 }
                 id.append(params[i]);
                 Bill bill = bills.get(Integer.parseInt(params[i]));
-                if(bill == null)
-                {
+                if (bill == null) {
                     System.out.println(MessageConstant.NOT_FOUND_BILL);
                     return;
                 }
@@ -77,5 +76,22 @@ public class BillService {
         System.out.println("Payment has been completed for Bill with id " + id.toString() + ".");
         PaymentService paymentService = PaymentService.getInstance();
         paymentService.addPayments(payments);
+    }
+
+    public void findProvider(String[] params) {
+        if (params.length == 1) {
+            System.out.println(MessageConstant.COMMAND_FORMAT_INCORRECT);
+            return;
+        }
+        for (Bill bill : bills.values()) {
+            if (bill.getProvider().equals(params[1].toUpperCase())) {
+                System.out.printf("%-10s %-10s %-10s %-15s %-10s %-15s%n",
+                        "Bill No.", "Type", "Amount", "Due Date", "State", "PROVIDER");
+                System.out.printf("%-10d %-10s %-10d %-15s %-10s %-15s%n",
+                        bill.getId(), bill.getType(), bill.getAmount(), bill.getDueDate(), bill.getState(), bill.getProvider());
+                return;
+            }
+        }
+        System.out.println(MessageConstant.NOT_FOUND_BY_PROVIDER);
     }
 }
